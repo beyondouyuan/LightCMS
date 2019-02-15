@@ -75,7 +75,7 @@ export default {
                     this.$notify({
                         title: '错误',
                         message: err.message,
-                        type: 'danger'
+                        type: 'error'
                     })
                     this.$refs['loginForm'].resetFields()
                 })

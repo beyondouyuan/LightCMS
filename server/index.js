@@ -2,7 +2,7 @@
  * @Author: beyondouyuan
  * @Date:   2018-08-20 10:58:40
  * @Last Modified by:   beyondouyuan
- * @Last Modified time: 2019-01-12 13:17:50
+ * @Last Modified time: 2019-02-15 13:46:11
  */
 
 
@@ -98,12 +98,17 @@ async function start() {
 
   // CORS解决跨域问题
   app.all('*', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With ');
+    // res.header('Access-Control-Allow-Origin', '*');
+    // axios添加了withCredentials: true, 则必须在服务器添加res.header('Access-Control-Allow-Credentials', 'true');
+    // 切必须指定Access-Control-Allow-Origin为具体域名而不能使用*统配
+    // 此处制定为http://127.0.0.1:3728则前端访问时只能使用http://127.0.0.1:3728而不能用http://localhost:3728否则session信息无法跨域携带
+    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:3728');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
     if (req.method == 'OPTIONS') {
-      res.send(200);
+      res.sendStatus(200);
       /让options请求快速返回/
     } else {
       next();
