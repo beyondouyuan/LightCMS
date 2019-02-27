@@ -27,7 +27,8 @@ import {
 } from '~/utils/util'
 const requestCode = 200
 import {
-    requestMembersLogin
+    requestMembersLogin,
+    requestTest
 } from '~/api/web'
 export default {
     name: 'WebLogin',
@@ -38,6 +39,11 @@ export default {
               password: ''
             }
         }
+    },
+    mounted() {
+        requestTest().then(res => {
+            console.log(res)
+        })
     },
     methods: {
         handleLogin() {
