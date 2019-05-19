@@ -27,8 +27,7 @@ import {
 } from '~/utils/util'
 const requestCode = 200
 import {
-    requestMembersLogin,
-    requestTest
+    requestMembersLogin
 } from '~/api/web'
 export default {
     name: 'WebLogin',
@@ -41,9 +40,6 @@ export default {
         }
     },
     mounted() {
-        requestTest().then(res => {
-            console.log(res)
-        })
     },
     methods: {
         handleLogin() {
